@@ -1,7 +1,3 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
- */
 package primeraentrega;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -12,6 +8,20 @@ import java.util.HashSet;
 import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.FileReader;
+
+/*
+ * Genera de manera aleatoria los archivos planos que necesitará el proyecto:
+ * archivo de productos, archivo de vendedores, archivo de ventas por cada vendedor.
+ * <p>
+ * AL ejecutarse (teniendo el metodo main) la clase muestra un mensaje si se generaron los archivos
+ * o no se generaron, ademas de no solicitar entrada de información para ejecutarse.
+ * </p>
+ *
+ *@author Hoover David Gonzalez Soto 
+ *Alex Cortes Calle
+ *Jose Morales Perdomo
+ *Jehan Restrepo Villa
+ */
 
 public class GenerateInfoFiles{
     private static ArrayList<String> productsIds = new ArrayList<>();
@@ -33,14 +43,8 @@ public class GenerateInfoFiles{
                 );
         
         String[] productNames = {
-            "computadora",
-            "celular",
-            "nevera",
-            "teclado",
-            "mouse",
-            "monitor",
-            "parlantes",
-            "lavadora"
+            "computadora", "celular", "nevera", "teclado",
+            "mouse", "monitor", "parlantes", "lavadora"
         };
                         
         for(int i = 0; i < productsCount; i++){
@@ -68,69 +72,17 @@ public class GenerateInfoFiles{
         );
         
         String[] nombres = {
-            "Juan",
-            "Carlos",
-            "Andrés",
-            "David",
-            "Daniel",
-            "Santiago",
-            "Sebastián",
-            "Alejandro",
-            "Mateo",
-            "Nicolás",
-            "Miguel",
-            "Julián",
-            "Felipe",
-            "Gabriel",
-            "Diego",
-            "Samuel",
-            "Tomás",
-            "Luis",
-            "Camilo",
-            "Jorge",
-            "María",
-            "Laura",
-            "Andrea",
-            "Valentina",
-            "Sofía",
-            "Isabella",
-            "Camila",
-            "Natalia",
-            "Daniela",
-            "Paula"
+            "Juan", "Carlos", "Andrés","David", "Daniel", "Santiago", "Sebastián",
+            "Alejandro", "Mateo", "Nicolás", "Miguel", "Julián", "Felipe", "Gabriel",
+            "Diego", "Samuel", "Tomás", "Luis", "Camilo", "Jorge", "María", "Laura",
+            "Andrea", "Valentina", "Sofía", "Isabella", "Camila", "Natalia", "Daniela", "Paula"
         };
         
         String[] apellidos = {
-            "Gonzalez",
-            "Rodriguez",
-            "Martinez",
-            "Garcia",
-            "Lopez",    
-            "Hernandez",
-            "Perez",
-            "Sanchez",
-            "Ramirez",
-            "Torres",
-            "Gomez",
-            "Diaz",
-            "Vargas",
-            "Castro",
-            "Morales",
-            "Rojas",
-            "Jimenez",
-            "Ruiz",
-            "Mendoza",
-            "Moreno",
-            "Muñoz",
-            "Restrepo",
-            "Quintero",
-            "Cardona",
-            "Cortes",
-            "Valencia",
-            "Ortiz",
-            "Marin",
-            "Suarez",
-            "Rivera"
+            "Gonzalez", "Rodriguez", "Martinez", "Garcia", "Lopez", "Hernandez", "Perez",
+            "Sanchez", "Ramirez", "Torres", "Gomez", "Diaz", "Vargas", "Castro", "Morales",
+            "Rojas", "Jimenez", "Ruiz", "Mendoza", "Moreno", "Muñoz", "Restrepo", "Quintero",
+            "Cardona", "Cortes", "Valencia", "Ortiz", "Marin", "Suarez", "Rivera"
         };
         
         Set<Integer> documentNumbers = new HashSet<>();
@@ -177,7 +129,10 @@ public class GenerateInfoFiles{
         
         writer.close();
     }
-    
+
+    /**
+    * 
+    */
     public static void createFilesForAllSalesmen() throws IOException{
         BufferedReader reader = 
                 new BufferedReader(
