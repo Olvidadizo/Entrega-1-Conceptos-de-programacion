@@ -1,3 +1,7 @@
+/*
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
+ * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Main.java to edit this template
+ */
 package primeraentrega;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -9,31 +13,64 @@ import java.util.ArrayList;
 import java.io.BufferedReader;
 import java.io.FileReader;
 
-/*
- * Genera de manera aleatoria los archivos planos que necesitará el proyecto:
- * archivo de productos, archivo de vendedores, archivo de ventas por cada vendedor.
- * <p>
- * AL ejecutarse (teniendo el metodo main) la clase muestra un mensaje si se generaron los archivos
- * o no se generaron, ademas de no solicitar entrada de información para ejecutarse.
- * </p>
- *
- *@author Hoover David Gonzalez Soto 
- *Alex Cortes Calle
- *Jose Morales Perdomo
- *Jehan Restrepo Villa
- */
+/**
+* La clase crea:
+* Un archivo que contiene todos los productos ofrecidos por la empresa
+* Un archivo que contiene la información de los vendedores de la empresa
+* Un archivo de ventas por cada vendedor de la empresa
+* <p>
+* AL ejecutarse (teniendo el metodo main) la clase muestra un mensaje si se generaron los archivos
+* o no se generaron, ademas de no solicitar entrada de información para ejecutarse.
+* </p>
+*
+* @author
+* Hoover Gonzales Soto
+* Alex Cortes Calle
+* Jose Morales Perdomo
+* Jehan Restrepo Villa
+*/
 
 public class GenerateInfoFiles{
+    
+    /**
+    * Almacena las ID de los productos generados en productos.txt
+    * Estas ID son posteriormente usadas al generar los archivos de ventas.
+    */    
     private static ArrayList<String> productsIds = new ArrayList<>();
+    
+    /**
+    * Se utiliza una única instancia de Random para generar todos los valores
+    * pseudoaleatorios del programa,
+    * evitando crear múltiples instancias innecesariamente.
+    */
     private static final Random RANDOM = new Random();
     
+    /**
+    * Intenta generar los archivos. 
+    * Si tiene éxito, notifica al usuario.
+    * Si falla, muestra que archivos generaron errores.
+    */
     public static void main(String[] args) throws IOException{
-        int numberOfProducts = RANDOM.nextInt(100) + 3;
-        int numberOfVendors = RANDOM.nextInt(50) + 3;
-        createProductsFile(numberOfProducts);
-        createSalesMenInfoFile(numberOfVendors);
-        createFilesForAllSalesmen();
+        try{
+            int numberOfProducts = RANDOM.nextInt(100) + 3;
+            int numberOfVendors = RANDOM.nextInt(50) + 3;
+            createProductsFile(numberOfProducts);
+            createSalesMenInfoFile(numberOfVendors);
+            createFilesForAllSalesmen();
+            System.out.println(" Éxito al generar archivos ");
+        } catch (IOException e){
+            System.out.println("Error al generar archivos: "+ e.getMessage());
+        }
     }
+    
+    /**
+    * Crea el archivo productos.txt con el número de productos solicitado
+    * 
+    * Limpia la lista de IDs y almacena en ella los identificadores
+    * de los prodcutos generados. Esto permite reutilizar las IDs
+    * al generar los archivos de ventas sin tener que volver a leer
+    * el archivo productos.txt
+    */
     
     public static void createProductsFile(int productsCount) throws IOException{        
         productsIds.clear();
@@ -64,7 +101,17 @@ public class GenerateInfoFiles{
         
         writer.close();
     }
+ /**
+    * genera el archivo vendedores.txt
+    * cada fila del archivo contiene la información de un vendedor.
+    * 
+    * Se utiliza un set para garantizar que dos vendedores
+    * no tengan un mismo número de cédula.
     
+    * el rango utilizado permite generar hasta 3501 números
+    * de cédula distintos. Si salesmanCount supera dicho límite,
+    * el ciclo no termina.
+    */
     public static void createSalesMenInfoFile(int salesmanCount) throws IOException{
         PrintWriter writer = 
                 new PrintWriter(
@@ -104,6 +151,17 @@ public class GenerateInfoFiles{
         writer.close();
     }
     
+ /**
+    * Dado un vendedor, genera su archivo de ventas con el formato:
+    * ventas_ID_nombre.txt.
+    *
+    * Para efectos del problema, cada fila de venta representa
+    * una transacción independiente. Por lo tanto, el número de
+    * ventas corresponde al número de filas de productos en el archivo.
+    *
+    * Un mismo producto puede aparecer en varias filas; cada aparición
+    * representa una venta diferente.
+    */
     public static void createSalesManFile(
             int randomSalesCount,
             String name,
@@ -129,9 +187,11 @@ public class GenerateInfoFiles{
         
         writer.close();
     }
-
+    
     /**
-    * 
+    * Este método lee el archivo vendedores.txt
+    * y por cada vendedor que lee
+    * llama al método createSalesManFile para crear su archivo de ventas
     */
     public static void createFilesForAllSalesmen() throws IOException{
         BufferedReader reader = 
