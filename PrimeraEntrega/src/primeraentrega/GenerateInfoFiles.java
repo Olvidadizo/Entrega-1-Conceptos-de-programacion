@@ -189,6 +189,9 @@ public class GenerateInfoFiles{
             String[] data = line.split(";");
             long id = Long.parseLong(data[1]);
             String name = data[2];
+            String lastname = data[3];
+            String fullName = name + "_" + lastname;
+            
             int randomSalesCount = RANDOM.nextInt(100) + 1;
             
             createSalesManFile(randomSalesCount, name, id);
